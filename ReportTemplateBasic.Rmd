@@ -27,19 +27,7 @@ output:
 
 ## Initial Data Analysis (IDA)
 
-RStudio has many data sets already loaded in. The example below uses preloaded data direct from RStudio example dataset: mtcars.
-
-Read about the [mtcars data set](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html).
-
-In the rmd file, you will see how you can load your own dataset from either 1) an online source using a URL or 2) a local file on your own computer.
-
 ```{r}
-
-# LOAD DATA v1 - uncomment the link below to: load data direct from html
-#cars = read.csv("dataset URL")
-
-# LOAD DATA v2 - uncomment the link below to: load data from local file
-#cars = read.csv("dataset file location")
 shootings = read.csv("fatal-police-shootings-data.csv", header = TRUE)
 
 # Quick look at top 5 rows of data
@@ -53,10 +41,26 @@ class(shootings)
 
 ## R's classification of variables
 str(shootings)
-#sapply(mtcars, class)
 ```
 ```{r}
-shootings_copy = shootings
+shootings_copy = read.csv("fatal-police-shootings-data.csv", header = TRUE)
+```
+
+```{r}
+shootings_copy$race = gsub("A", "Asian", shootings_copy$race)
+shootings_copy$race = gsub("B", "Black", shootings_copy$race)
+shootings_copy$race = gsub("H", "Hispanic", shootings_copy$race)
+shootings_copy$race = gsub("N", "N.American", shootings_copy$race)
+shootings_copy$race = gsub("W", "White", shootings_copy$race)
+shootings_copy$race = gsub("O", "Other", shootings_copy$race)
+shootings_copy$race[shootings_copy$race == ""] <- "N/A"
+```
+The data was duplicated to allow us to manipulate it and reformat it without influencing the original raw data. Variables such as body_camera and signs_of_mental_health were both reclassified into logical values as the only contained the True of False values. The name, date, manner_of_deat, armed, age, gender, race, city, state, threat_level, flee and is_geocoding_exact were all changed from characters to factors.
+
+
+
+
+```{r}
 shootings_copy$date = as.factor(shootings_copy$date)
 shootings_copy$manner_of_death = as.factor(shootings_copy$manner_of_death)
 shootings_copy$armed = as.factor(shootings_copy$armed)
@@ -73,26 +77,6 @@ shootings_copy$is_geocoding_exact = as.factor(shootings_copy$is_geocoding_exact)
 str(shootings_copy)
 ```
 
-```{r}
-shootings_copy$race = gsub("A", "Asian", shootings_copy$race)
-shootings_copy$race = gsub("B", "Black", shootings_copy$race)
-shootings_copy$race = gsub("H", "Hispanic", shootings_copy$race)
-shootings_copy$race = gsub("N", "N.American", shootings_copy$race)
-shootings_copy$race = gsub("W", "White", shootings_copy$race)
-shootings_copy$race = gsub("O", "Other", shootings_copy$race)
-
-
-
-
-```
-
-
-```{r}
-race = shootings_copy$race
-table(race)
-```
-
-
 Summary:
 
 - The data came from ...
@@ -104,6 +88,14 @@ Summary:
 <br>
 
 ## Research Question 1
+
+```{r}
+race = shootings_copy$race
+table(race)
+
+race = factor(race, levels=c("Other", "N.American", "Asian", "N/A", "Hispanic", "Black", "White"))
+barplot(table(race), main="Race vs Number of Deaths", xlab="Race", ylab="Number of Deaths")
+```
 
 Insert text and analysis. 
 
