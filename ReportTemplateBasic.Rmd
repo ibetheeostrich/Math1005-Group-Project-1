@@ -97,7 +97,7 @@ The information in the database is obtained from local news reports, social medi
 The data in the dataset shows a high level of validity. There is a clear specification in all the categories as to what they record and the criteria under which they were recorded. 
 The data base is updated extremely frequently with near daily updates. As a result, the data set is extremely timely and relevant. This allows for trends to be studied from 2015 to the point in time with an extremely low risk of incomplete data due to time constraints.
 
-Due to the manner of which the data is collected, it is not always possible to identify certain aspects of a case. An example of which would be in the variable race in which there is a noticable proportion of cases where the race of the deceased could not be determined. This further extends to what the deceased individual was armed with. As a result, analysis into whether one racial demographic is more likely to be affected may produce skewed results.
+Due to the manner of which the data is collected, it is not always possible to identify certain aspects of a case. An example of which would be in the variable race in which there is a noticeable proportion of cases where the race of the deceased could not be determined. This further extends to what the deceased individual was armed with. As a result, analysis into whether one racial demographic is more likely to be affected may produce skewed results.
 
 
 <br>
