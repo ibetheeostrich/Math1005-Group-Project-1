@@ -1,0 +1,126 @@
+---
+title: "Reproducible Report Template - Basic"
+author: "Student/s SID"
+subtitle: "Project X"
+date: "University of Sydney | Unit of Study | MONTH YEAR"
+output:
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    self_contained: yes
+    theme: flatly
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    code_folding: hide
+---
+
+<br>
+
+# Executive Summary
+- The aim of this report is to ...
+- The main discoveries are ...
+
+<br>
+
+# Full Report
+
+## Initial Data Analysis (IDA)
+
+RStudio has many data sets already loaded in. The example below uses preloaded data direct from RStudio example dataset: mtcars.
+
+Read about the [mtcars data set](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html).
+
+In the rmd file, you will see how you can load your own dataset from either 1) an online source using a URL or 2) a local file on your own computer.
+
+```{r}
+
+# LOAD DATA v1 - uncomment the link below to: load data direct from html
+#cars = read.csv("dataset URL")
+
+# LOAD DATA v2 - uncomment the link below to: load data from local file
+#cars = read.csv("dataset file location")
+shootings = read.csv("fatal-police-shootings-data.csv", header = TRUE)
+
+# Quick look at top 5 rows of data
+head(shootings)
+
+## Size of data
+dim(shootings)
+
+## R's classification of data
+class(shootings)
+
+## R's classification of variables
+str(shootings)
+#sapply(mtcars, class)
+```
+```{r}
+shootings_copy = shootings
+shootings_copy$date = as.factor(shootings_copy$date)
+shootings_copy$manner_of_death = as.factor(shootings_copy$manner_of_death)
+shootings_copy$armed = as.factor(shootings_copy$armed)
+shootings_copy$gender = as.factor(shootings_copy$gender)
+shootings_copy$race = as.factor(shootings_copy$race)
+shootings_copy$city = as.factor(shootings_copy$city)
+shootings_copy$state = as.factor(shootings_copy$state)
+shootings_copy$signs_of_mental_illness = as.logical(shootings_copy$signs_of_mental_illness)
+shootings_copy$threat_level = as.factor(shootings_copy$threat_level)
+shootings_copy$flee = as.factor(shootings_copy$flee)
+shootings_copy$body_camera = as.logical(shootings_copy$body_camera)
+shootings_copy$is_geocoding_exact = as.factor(shootings_copy$is_geocoding_exact)
+
+str(shootings_copy)
+```
+
+```{r}
+shootings_copy$race = gsub("A", "Asian", shootings_copy$race)
+shootings_copy$race = gsub("B", "Black", shootings_copy$race)
+shootings_copy$race = gsub("H", "Hispanic", shootings_copy$race)
+shootings_copy$race = gsub("N", "N.American", shootings_copy$race)
+shootings_copy$race = gsub("W", "White", shootings_copy$race)
+shootings_copy$race = gsub("O", "Other", shootings_copy$race)
+
+
+
+
+```
+
+
+```{r}
+race = shootings_copy$race
+table(race)
+```
+
+
+Summary:
+
+- The data came from ...
+- The data is/is not valid because ...
+- Possible issues include ...
+- Each row represents ...
+- Each column represents ...
+
+<br>
+
+## Research Question 1
+
+Insert text and analysis. 
+
+Summary: 
+
+<br>
+
+## Research Question 2
+
+Insert text and analysis. 
+
+Summary: 
+
+<br>
+
+# References (if needed)
+
+Style: APA 
+
+<br>
