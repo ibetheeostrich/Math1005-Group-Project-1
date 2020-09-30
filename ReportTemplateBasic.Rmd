@@ -26,6 +26,7 @@ output:
 # Full Report
 
 ## Initial Data Analysis (IDA)
+The first steps taken in the IDA was to read the data, observe the first five rows of data, check the dimension of the data, observe the class of the variables and observe the structure of the data.
 
 ```{r}
 shootings = read.csv("fatal-police-shootings-data.csv", header = TRUE)
@@ -42,6 +43,15 @@ class(shootings)
 ## R's classification of variables
 str(shootings)
 ```
+
+
+
+The data was duplicated to allow us to manipulate it and reformat it without influencing the original raw data. 
+
+This report will focus specifically at variables which include race, age, latitude, longitude and year. The variable race, is classified as a factor due to it being categorical. However, based on the original data obtained, it was placed under chr(character) value which was caused by the fact that the variables were assigned by the initials of the varying ethnicities, thus were read as generic text. Additionally, it is considered as a nominal qualitative variable with more than three categories. While age is a discrete quantitative variable due to the number being rounded to the nearest number. Similarly, latitude and longitude, they are both classified in the same manner. 
+
+Furthermore, to streamline initial data collection, the values of the race variable were stored as single letters. To provide clarity to the data, the race values were replaced with the full name of the race rather than its initial.
+
 ```{r}
 shootings_copy = read.csv("fatal-police-shootings-data.csv", header = TRUE)
 ```
@@ -55,7 +65,7 @@ shootings_copy$race = gsub("W", "White", shootings_copy$race)
 shootings_copy$race = gsub("O", "Other", shootings_copy$race)
 shootings_copy$race[shootings_copy$race == ""] <- "N/A"
 ```
-The data was duplicated to allow us to manipulate it and reformat it without influencing the original raw data. Variables such as body_camera and signs_of_mental_health were both reclassified into logical values as the only contained the True of False values. The name, date, manner_of_deat, armed, age, gender, race, city, state, threat_level, flee and is_geocoding_exact were all changed from characters to factors.
+
 
 
 
@@ -79,11 +89,16 @@ str(shootings_copy)
 
 Summary:
 
-- The data came from ...
-- The data is/is not valid because ...
-- Possible issues include ...
-- Each row represents ...
-- Each column represents ...
+The data used in this report was sourced from “The Washington Post”, a United States of America based newspaper. The database was formed due to the lack of a reliable government database for tracking fatal police shootings. 
+
+The rows represent each case recorded while the columns represent the different variables associated with each case.
+The information in the database is obtained from local news reports, social media, law enforcement websites as well as other independents databases. In addition, the Washington post conducts its own investigations. Social media is typically an unreliable source as there is no factchecking as to what can be posted. As a result, data obtained from social media is likely to be incomplete. However, social media is significantly faster than other forms of traditional media. Due to social media a new case can be added to the database, however, the details of an incident are not reliable until further investigation is conducted by independent databases. Law enforcement websites are based of officer self- reported data. As a result, entire cases may be missing from an official law enforcement database. However, having separate independent databases also investigate cases, the number of missing cases from the Washington Post database as a whole is minimised.
+
+The data in the dataset shows a high level of validity. There is a clear specification in all the categories as to what they record and the criteria under which they were recorded. 
+The data base is updated extremely frequently with near daily updates. As a result, the data set is extremely timely and relevant. This allows for trends to be studied from 2015 to the point in time with an extremely low risk of incomplete data due to time constraints.
+
+Due to the manner of which the data is collected, it is not always possible to identify certain aspects of a case. An example of which would be in the variable race in which there is a noticable proportion of cases where the race of the deceased could not be determined. This further extends to what the deceased individual was armed with. As a result, analysis into whether one racial demographic is more likely to be affected may produce skewed results.
+
 
 <br>
 
