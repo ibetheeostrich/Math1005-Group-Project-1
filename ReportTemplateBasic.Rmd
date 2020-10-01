@@ -153,18 +153,6 @@ Summary:
 ## Research Question 2
 
 
-```{r}
-date = shootings_copy$date
-age = shootings_copy$age
-
-plot(date, age, xlab="date", ylab="age")
-
-```
-
-```{r}
-table(shootings_copy$date)
-```
-
 
 
 
