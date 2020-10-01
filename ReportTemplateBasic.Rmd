@@ -152,6 +152,18 @@ Summary:
 
 ## Research Question 2
 
+```{r}
+x = table(date)
+
+write.csv(x, "year_and_deaths")
+```
+```{r}
+year_and_deaths = read.csv("year_and_deaths", header = TRUE)
+year = year_and_deaths$date
+deaths = year_and_deaths$Freq
+
+plot(year, deaths ,xlab = "year", ylab = "deaths")
+```
 
 
 
